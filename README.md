@@ -1,7 +1,7 @@
 # weekly-schedule
 
 University course schedule management system (Haftalık Ders Programı), migrated from a legacy custom MVC
-application to **Laravel 11** and **PHP 8.2** (`declare(strict_types=1);` in every PHP file).
+application to **Laravel 12** and **PHP 8.2** (`declare(strict_types=1);` in every PHP file).
 
 ## Features
 
@@ -79,16 +79,12 @@ composer analyse     # PHPStan / Larastan level 8
 vendor/bin/pint      # code style (Laravel preset + declare_strict_types)
 ```
 
-## Security note: Laravel 11 end of life
+## Framework version
 
-Laravel 11 no longer receives security fixes, and Packagist reports advisories against every 11.x release.
-The latest 11.x release (`^11.57`) is pinned. The advisories that cannot be fixed on 11.x are listed under
-`config.policy.advisories.ignore-id` in `composer.json`, with mitigations:
+The project was originally specified for Laravel 11. Laravel 11 is end of life, and every 11.x release is affected
+by unpatched advisories, including a CRLF injection in the default `email` validation rule, which is fixed only in
+12.60.0 / 13.10.0. The project therefore requires `laravel/framework` `^12.60`, the newest line that still supports
+PHP 8.2 (13.x requires PHP 8.3). `composer audit` reports no advisories.
 
-- CRLF injection through the default `email` rule (fixed only in 12.60.0 / 13.10.0): all e-mail validation uses
-  `email:filter`, which rejects CR/LF. `tests/Feature/EmailValidationRuleTest.php` fails if any form request uses
-  another e-mail validator. The application sends no mail, and Google sign-in e-mails come from Google's verified profile.
-- Path confusion in temporary signed URLs: this application does not use signed URLs.
-- XSS on the debug error page: keep `APP_DEBUG=false` in production.
-
-Upgrade to a supported Laravel release (12.x/13.x) as soon as possible.
+As defense in depth, all e-mail validation uses `email:filter`, which rejects CR/LF, and
+`tests/Feature/EmailValidationRuleTest.php` fails if any form request uses a different e-mail validator.

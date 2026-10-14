@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "ufuktanyeri/weekly-schedule",
     "type": "project",
-    "description": "University course schedule management system (Laravel 11, PHP 8.2).",
+    "description": "University course schedule management system (Laravel 12, PHP 8.2).",
     "keywords": [
         "laravel",
         "schedule",
@@ -11,7 +11,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^11.57",
+        "laravel/framework": "^12.60",
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9"
     },
@@ -78,16 +78,6 @@
         },
         "platform": {
             "php": "8.2.0"
-        },
-        "policy": {
-            "advisories": {
-                "ignore-id": {
-                    "PKSA-mdq4-51ck-6kdq": "Laravel 11 EOL, no 11.x fix. Mitigated: all email validation uses email:filter (rejects CR/LF).",
-                    "PKSA-3r5d-mb8f-1qw9": "Same issue as PKSA-mdq4-51ck-6kdq; mitigated with email:filter.",
-                    "PKSA-m5cs-t1y6-qpcs": "Laravel 11 EOL, no 11.x fix. Application does not use temporary signed URLs.",
-                    "PKSA-d5tc-s1qs-h781": "Laravel 11 EOL, no 11.x fix. Debug page only; APP_DEBUG must be false in production."
-                }
-            }
         }
     },
     "minimum-stability": "stable",

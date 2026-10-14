@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
 /**
- * Laravel 11 is EOL and its default "email" rule is affected by a CRLF injection advisory
- * (fixed only in 12.60.0 / 13.10.0, ignored in composer.json). Every e-mail rule must use
- * the "filter" validator, which rejects CR/LF characters.
+ * Defense in depth against CRLF injection in the default "email" rule (advisory fixed in
+ * laravel/framework 12.60.0 / 13.10.0). Every e-mail rule must use the "filter" validator,
+ * which rejects CR/LF characters.
  */
 class EmailValidationRuleTest extends TestCase
 {
