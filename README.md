@@ -85,7 +85,9 @@ Laravel 11 no longer receives security fixes, and Packagist reports advisories a
 The latest 11.x release (`^11.57`) is pinned. The advisories that cannot be fixed on 11.x are listed under
 `config.policy.advisories.ignore-id` in `composer.json`, with mitigations:
 
-- CRLF injection through the default `email` rule: all e-mail validation uses `email:filter`.
+- CRLF injection through the default `email` rule (fixed only in 12.60.0 / 13.10.0): all e-mail validation uses
+  `email:filter`, which rejects CR/LF. `tests/Feature/EmailValidationRuleTest.php` fails if any form request uses
+  another e-mail validator. The application sends no mail, and Google sign-in e-mails come from Google's verified profile.
 - Path confusion in temporary signed URLs: this application does not use signed URLs.
 - XSS on the debug error page: keep `APP_DEBUG=false` in production.
 
